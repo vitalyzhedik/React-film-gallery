@@ -1,0 +1,49 @@
+.main-select-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.main-select {
+  width: 180px;
+  height: 40px;
+  font-size: 14px;
+}
+
+.main-select:hover {
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  background-color: #a4b7d3;
+  cursor: pointer;
+}
+
+/* add-film-link */
+
+.add-film-link {
+  margin-left: 20px;
+  display: none;
+}
+
+.add-film-link--img {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.add-film-link--img:hover {
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+  transition: .5s ease-out;
+}
+
+.st1 {
+  fill: #FFFFFF;
+}
+
+.st0 {
+  fill: #267CB5;
+}
+
+.st0:hover {
+  fill: red;
+  transition: .5s ease-out;
+}
