@@ -1,6 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
 import './FilmContent.css';
+import noImage from './img/noImage.jpg'
 
 class FilmContent extends Component {
 
@@ -32,6 +33,27 @@ class FilmContent extends Component {
       )
   };
 
+  componentDidUpdate(prevprops) {
+    if (this.props.pageNumber !== prevprops.pageNumber || this.props.sortBy !== prevprops.sortBy) {
+      fetch(`https://api.themoviedb.org/3/discover/movie?api_key=b7250787f519598983a71dd72dba0889&language=en-US&sort_by=${this.props.sortBy}&include_adult=false&include_video=false&page=${this.props.pageNumber}`)
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              isLoaded: true,
+              items: result.results
+            });
+          },
+          (error) => {
+            this.setState({
+              isLoaded: true,
+              error
+            });
+          }
+        )
+    }
+  };
+
   render() {
     const { error, isLoaded, items } = this.state;
     if (error) {
@@ -50,7 +72,7 @@ class FilmContent extends Component {
                 <img
                   className="film-image"
                   src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                  onError="this.src='./img/noImage.jpg'"
+                  onError={noImage}
                   alt={`${item.title}`} />
                 <p className="film-title">
                   {`${item.title}`}
@@ -63,9 +85,9 @@ class FilmContent extends Component {
                     vote_average: {`${item.vote_average}`}
                   </div>
                 </div>
-                <button 
-                className="film-content__list--delete-button"
-                styleName="display: none">
+                <button
+                  className="film-content__list--delete-button"
+                  styleName="display: none">
                 </button>
               </li>
             ))}

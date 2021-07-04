@@ -6,12 +6,8 @@ class Pagination extends Component {
 
   paginationClick = (event) => {
     let pagePagination = event.target.innerHTML.trim();
-    this.changePage(pagePagination);
+    this.props.updatePageNumber(pagePagination);
   }
-
-  changePage = (pagePagination) => {
-    console.log(pagePagination);
-  };
 
   render() {
     return (
@@ -33,7 +29,7 @@ class Pagination extends Component {
           </li>
           <li className="page-content-list__item">
             <button className="page-number-button"
-              onClick={this.paginationClick}>
+               onClick={this.paginationClick}>
               3
             </button>
           </li>
