@@ -72,7 +72,8 @@ class FilmContent extends Component {
                 <img
                   className="film-image"
                   src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                  onError={noImage}
+                  onError={(e) => {
+                    e.target.src = noImage}}
                   alt={`${item.title}`} />
                 <p className="film-title">
                   {`${item.title}`}
