@@ -31,7 +31,7 @@ const Header = (props) => {
           Sign In/Sign Up
       </button> */}
         <NavLink 
-        to="/Registration"
+        to="/Autorization"
         className="header-content__sign-button">
           {textButton}
       </NavLink>

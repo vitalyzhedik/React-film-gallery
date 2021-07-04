@@ -1,0 +1,93 @@
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-size: 14px;
+  color: #242424;
+  font-family: Arial, serif;
+  font-style: normal;
+  font-weight: 400;
+  box-sizing: border-box;
+}
+
+/* Стили для отдельной карточки фильма */
+
+.wrapper {
+  display: flex;
+  margin-left: 50px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.title-image {
+  width: 400px;
+  height: 600px;
+}
+
+.wrapper__text--title {
+  font-weight: 700;
+  font-size: 24px;
+  padding-left: 40px;
+}
+
+.wrapper__text--list {
+  list-style-type: none;
+}
+
+.wrapper__text--list-item {
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.list-item-bold {
+  font-weight: 600;
+}
+
+.vote-rating {
+  display: none;
+}
+
+.button-del {
+  display: none;
+  background-image: url(./img/delete.svg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid red;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.button-del:hover {
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+}
+
+.button-redactor {
+  display: none;
+  background-image: url(./img/pen.svg);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  margin-left: 20px;
+}
+
+.button-redactor:hover {
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+}
+
+.vote-rating-button {
+  background-color: rgb(46, 43, 226);
+}
+
+.vote-rating-button:hover {
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+}

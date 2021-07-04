@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'react';
+import FilmCard from './FilmCard/FilmCard';
 import './FilmContent.css';
-import noImage from './img/noImage.jpg'
 
 class FilmContent extends Component {
 
@@ -64,33 +64,12 @@ class FilmContent extends Component {
       return (
         <div className="film-content">
           <ul className="film-content__list">
-            {items.map(item => (
-              <li
-                key={item.id}
-                id={item.id}
-                className="film-content__list--item">
-                <img
-                  className="film-image"
-                  src={`https://image.tmdb.org/t/p/w200${item.poster_path}`}
-                  onError={(e) => {
-                    e.target.src = noImage}}
-                  alt={`${item.title}`} />
-                <p className="film-title">
-                  {`${item.title}`}
-                </p>
-                <div className="film-content__list--item-text">
-                  <div>
-                    release_date: {`${item.release_date}`}
-                  </div>
-                  <div>
-                    vote_average: {`${item.vote_average}`}
-                  </div>
-                </div>
-                <button
-                  className="film-content__list--delete-button"
-                  styleName="display: none">
-                </button>
-              </li>
+            {items.map(film => (
+              <FilmCard 
+              film={film}
+              key={film.id}
+              getFilmData={this.props.getFilmData}
+              />
             ))}
           </ul>
         </div>

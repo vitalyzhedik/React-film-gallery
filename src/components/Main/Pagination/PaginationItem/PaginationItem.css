@@ -1,0 +1,42 @@
+.page-content-list__item {
+  margin: 5px;
+}
+
+.page-number-button {
+  border: 1px solid black;
+  border-radius: 50%;
+  min-width: 50px;
+  height: 50px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.page-text-button {
+  border: 1px solid black;
+  border-radius: 25px;
+  width: 80px;
+  height: 50px;
+  padding: 0;
+  font-size: 14px;
+}
+
+.page-number-button:hover {
+  background-color: #a4b7d3;
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+}
+
+.page-number-button .active {
+  background-color: #a4b7d3;
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+}
+
+.page-text-button:hover {
+  background-color: #a4b7d3;
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  cursor: pointer;
+}
