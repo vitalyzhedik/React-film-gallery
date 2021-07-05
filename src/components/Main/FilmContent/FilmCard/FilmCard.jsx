@@ -18,7 +18,7 @@ class FilmCard extends Component {
         onClick={() => {
           this.setFilmData()
         }}>
-        <NavLink to="/FilmPage">
+        <NavLink className="film-image-link" to="/FilmPage">
           <img
             className="film-image"
             src={`https://image.tmdb.org/t/p/w200${this.props.film.poster_path}`}

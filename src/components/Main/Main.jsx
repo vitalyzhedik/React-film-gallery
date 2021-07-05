@@ -27,6 +27,11 @@ class Main extends Component {
     });
   };
 
+  componentDidMount () {
+    const signInButton = document.querySelector('.header-content__sign-button');
+    signInButton.style.display = 'block';
+  }
+
   render() {
     return (
       <main className="main">

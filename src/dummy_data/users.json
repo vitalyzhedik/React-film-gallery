@@ -1,0 +1,20 @@
+[
+  {
+    "id" : 1,
+    "name" : "Admin",
+    "surname" : "Admin",
+    "password" : "Admin",
+    "email" : "Admin@mail.ru",
+    "isLoggined" : true,
+    "isAdmin" : true
+  },
+  {
+    "id" : 2,
+    "name" : "Petr",
+    "surname" : "Petrov",
+    "password" : "Petrov200",
+    "email" : "Petrov@mail.ru",
+    "isLoggined" : true,
+    "isAdmin" : false
+  }
+]
