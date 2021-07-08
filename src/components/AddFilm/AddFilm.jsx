@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
-import './Autorization.css';
+import './AddFilm.css';
 
-const Autorization = (props) => {
+const AddFilm = (props) => {
 
-/*   const [autorized, setAutorized] = useState(false);
-  const [admin, setAdmin] = useState(false); */
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
 
@@ -59,7 +57,7 @@ const Autorization = (props) => {
     <div className="autorization-content">
       <form action="">
         <h1 className="form-title">
-          Sign In
+          Add film
           </h1>
         <p className="input-email-error">
           Такого пользователя не существует!
@@ -99,5 +97,5 @@ const Autorization = (props) => {
   );
 };
 
-export default Autorization;
-Autorization.displayName = "Autorization";
+export default AddFilm;
+AddFilm.displayName = "AddFilm";

@@ -69,6 +69,7 @@ class FilmContent extends Component {
               film={film}
               key={film.id}
               getFilmData={this.props.getFilmData}
+              userData={this.props.userData}
               />
             ))}
           </ul>

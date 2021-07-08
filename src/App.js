@@ -1,12 +1,14 @@
-import { BrowserRouter, Route } from 'react-router-dom';
+import React from 'react';
+import { Component } from 'react';
+import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Autorization from './components/Autorization/Autorization';
 import FilmPage from './components/FilmPage/FilmPage';
 import Header from './components/Header/Header';
 import Main from './components/Main/Main';
-import { Component } from 'react';
 import users from './dummy_data/users.json'
 import Registration from './components/Registration/Registration';
+import AddFilm from './components/AddFilm/AddFilm';
 
 class App extends Component {
 
@@ -15,10 +17,7 @@ class App extends Component {
     this.state = {
       filmData: {},
       users: users,
-      path: "",
-      isAdmin: false,
-      isAutorizedUser: false,
-      userName: ''
+      userData: {},
     };
   }
 
@@ -28,21 +27,25 @@ class App extends Component {
     })
   };
 
-  getPath = (path) => {
+  getUserData = (userData) => {
     this.setState({
-      path: path
+      userData: userData
     })
-  }
+  };
 
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header />
-          <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} />} />
-          <Route path="/Autorization" render={() => <Autorization usersData={this.state.users} getPath={this.getPath} path={this.state.path}/>} />
-          <Route path="/Registration" render={() => <Registration />} />
-          <Route path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData}/>} />
+          <Header userName={this.state.userData.userName}/>
+          <Switch>
+            <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} userData={this.state.userData} />} />
+            <Route exact path="/Autorization" render={() => <Autorization usersData={this.state.users} getUserData={this.getUserData}/>} />
+            <Route exact path="/Registration" render={() => <Registration />} />
+            <Route exact path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData} />} />
+            <Route exact path="/AddFilm" render={() => <AddFilm />} />
+            <Redirect to="/NotFoundPage" />
+          </Switch>
         </div>
       </BrowserRouter>
     )

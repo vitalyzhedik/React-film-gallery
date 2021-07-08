@@ -6,6 +6,21 @@ import noImage from './img/noImage.jpg'
 
 class FilmCard extends Component {
 
+  componentDidMount() {
+    if (this.props.userData.isAdmin) {
+      const addFilmlink = document.querySelector('.add-film-link');
+      addFilmlink.style.display = 'block';
+      const deleteButtonFilm = document.querySelectorAll('.film-content__list--delete-button');
+      deleteButtonFilm.forEach((item) => {
+        item.style.display = 'block';
+      });
+      const filmCards = document.querySelectorAll('.film-content__list--item');
+      filmCards.forEach((item) => {
+        item.classList.add('film-content__list--item-admin');
+      });
+    }
+  };
+
   setFilmData = () => {
     this.props.getFilmData(this.props.film);
   }
@@ -37,9 +52,7 @@ class FilmCard extends Component {
               vote_average: {`${this.props.film.vote_average}`}
             </div>
           </div>
-          <button
-            className="film-content__list--delete-button"
-            styleName="display: none">
+          <button className="film-content__list--delete-button">
           </button>
         </NavLink>
       </li>

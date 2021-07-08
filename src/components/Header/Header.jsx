@@ -3,8 +3,15 @@ import { NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = (props) => {
-  
+
   let textButton = 'Sign In/Sign Up';
+  let textLoginnedButton = 'Log Out';
+
+  const handleLogOut = () => {
+    if (props.userName) {
+      
+    }
+  };
 
   return (
     <header className="header">
@@ -22,21 +29,16 @@ const Header = (props) => {
           </svg>
         </NavLink>
         <p className="header-content__username">
+          {props.userName}
         </p>
-        {/* <button 
-        type="button" 
-        className="header-content__sign-button"
-        onClick={onSignClick}
-        >
-          Sign In/Sign Up
-      </button> */}
-        <NavLink 
-        to="/Autorization"
-        className="header-content__sign-button">
-          {textButton}
-      </NavLink>
+        <NavLink
+        onClick={handleLogOut}
+          to="/Autorization"
+          className="header-content__sign-button">
+            {props.userName ? textLoginnedButton : textButton}
+        </NavLink>
       </div>
-    </header >
+    </header>
   )
 };
 

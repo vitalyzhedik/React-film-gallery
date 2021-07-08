@@ -36,11 +36,12 @@ class Main extends Component {
     return (
       <main className="main">
       <div className="main-content">
-        <Select sorting={this.updateSorting}/>
+        <Select sorting={this.updateSorting} userData={this.props.userData}/>
         <FilmContent 
         pageNumber={this.state.page} 
         sortBy={this.state.sorting}
         getFilmData={this.props.getFilmData}
+        userData={this.props.userData}
         />
         <Pagination updatePageNumber={this.updatePageNumber}/>
       </div>
