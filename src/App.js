@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header userName={this.state.userData.userName}/>
+          <Header userData={this.state.userData} getUserData={this.getUserData}/>
           <Switch>
             <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} userData={this.state.userData} />} />
             <Route exact path="/Autorization" render={() => <Autorization usersData={this.state.users} getUserData={this.getUserData}/>} />

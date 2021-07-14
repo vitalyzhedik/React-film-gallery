@@ -7,8 +7,18 @@ const Header = (props) => {
   let textButton = 'Sign In/Sign Up';
   let textLoginnedButton = 'Log Out';
 
+  let navLinkToAuto = "/Autorization";
+  let navLinkToHome = "/";
+
   const handleLogOut = () => {
-    if (props.userName !== "") {
+    if (props.userData.userName !== "") {
+      props.getUserData({
+        isAdmin: false,
+        isAutorized: false,
+        userName: ""
+      });
+      /* history.push('/'); */
+
       /* document.querySelector('.header-content__username').style.display = 'none'; */
       /* props.getUserIsLoggined(); */
       /* props.getUserData(); */
@@ -31,13 +41,13 @@ const Header = (props) => {
           </svg>
         </NavLink>
         <p className="header-content__username">
-          {props.userName}
+          {props.userData.userName}
         </p>
         <NavLink
         onClick={handleLogOut}
-          to="/Autorization"
+          to={props.userData.userName ? navLinkToHome : navLinkToAuto}
           className="header-content__sign-button">
-            {props.userName ? textLoginnedButton : textButton}
+            {props.userData.userName ? textLoginnedButton : textButton}
         </NavLink>
       </div>
     </header>
