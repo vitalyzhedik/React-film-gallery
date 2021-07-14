@@ -9,6 +9,7 @@ import Main from './components/Main/Main';
 import users from './dummy_data/users.json'
 import Registration from './components/Registration/Registration';
 import AddFilm from './components/AddFilm/AddFilm';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 
 class App extends Component {
 
@@ -33,6 +34,12 @@ class App extends Component {
     })
   };
 
+  getUserIsLoggined = (userData) => {
+    this.setState({
+      userData: userData
+    })
+  };
+
   render() {
     return (
       <BrowserRouter>
@@ -41,9 +48,10 @@ class App extends Component {
           <Switch>
             <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} userData={this.state.userData} />} />
             <Route exact path="/Autorization" render={() => <Autorization usersData={this.state.users} getUserData={this.getUserData}/>} />
-            <Route exact path="/Registration" render={() => <Registration />} />
-            <Route exact path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData} />} />
+            <Route exact path="/Registration" render={() => <Registration usersData={this.state.users} getUserData={this.getUserData}/>} />
+            <Route exact path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData} userData={this.state.userData}/>} />
             <Route exact path="/AddFilm" render={() => <AddFilm />} />
+            <Route exact path="/NotFoundPage" render={() => <NotFoundPage />} />
             <Redirect to="/NotFoundPage" />
           </Switch>
         </div>

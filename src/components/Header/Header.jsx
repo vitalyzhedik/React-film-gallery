@@ -8,8 +8,10 @@ const Header = (props) => {
   let textLoginnedButton = 'Log Out';
 
   const handleLogOut = () => {
-    if (props.userName) {
-      
+    if (props.userName !== "") {
+      /* document.querySelector('.header-content__username').style.display = 'none'; */
+      /* props.getUserIsLoggined(); */
+      /* props.getUserData(); */
     }
   };
 

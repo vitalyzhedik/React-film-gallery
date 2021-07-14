@@ -33,10 +33,12 @@ class FilmPage extends Component {
           });
         }
       )
+      if (this.props.userData.isAutorized === true) {
+        document.querySelector('.vote-rating').style.display = 'block';
+      }
   };
 
   filmGenresList = () => {
-    debugger;
     let filmGenresList = [];
     for (let i = 0; i < this.state.genres; i++) {
       filmGenresList.push(this.state.genres[i].name)
@@ -44,7 +46,12 @@ class FilmPage extends Component {
     this.setState({
       genresText: filmGenresList,
     });
-  }
+  };
+
+/*   addVoteCount = () => {
+    this.props.filmData
+    alert ('hello')
+  }; */
 
 
 
@@ -97,7 +104,7 @@ class FilmPage extends Component {
             <li className="wrapper__text--list-item vote-rating">
               <span className="list-item-bold">vote(rating):</span>
               <input className="input-rating" type="number" name="rating" id="" min='1' max='10' placeholder='Rating' />
-              <button className="vote-rating-button">add vote</button>
+              <button className="vote-rating-button" /* onClick={this.addVoteCount} */>add vote</button>
             </li>
           </ul>
         </div>
