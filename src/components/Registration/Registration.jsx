@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './Registration.css';
 
 const Registration = (props) => {
+  
   const [userName, setUserName] = useState('');
   const [userSurName, setUserSurName] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -73,34 +74,6 @@ const Registration = (props) => {
           history.push('/');
         break;
       }
-      /* if (userName.length > 7 &&
-        userSurName.length > 7  &&
-        userPassword.length > 7 &&
-        userEmail !== props.usersData[i].email ) {
-          debugger;
-        console.log("yeeee");
-        break;
-      } */
-
-      /* if (userEmail === "Admin@mail.ru" && userPassword === "Admin") {
-        props.getUserData({
-          isAdmin: true,
-          isAutorized: true,
-          userName: props.usersData[i].name
-        });
-      }
-      document.querySelector('.input-email-error').style.display = 'none';
-      document.querySelector('.input-password-error').style.display = 'none';
-      history.push('/');
-      break;
-    } else if (userEmail === props.usersData[i].email &&
-      userPassword !== props.usersData[i].password) {
-      document.querySelector('.input-email-error').style.display = 'none';
-      document.querySelector('.input-password-error').style.display = 'block';
-      break;
-    } else {
-      document.querySelector('.input-email-error').style.display = 'block';
-    }; */
     };
   };
 

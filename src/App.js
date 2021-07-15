@@ -50,7 +50,7 @@ class App extends Component {
             <Route exact path="/Autorization" render={() => <Autorization usersData={this.state.users} getUserData={this.getUserData}/>} />
             <Route exact path="/Registration" render={() => <Registration usersData={this.state.users} getUserData={this.getUserData}/>} />
             <Route exact path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData} userData={this.state.userData}/>} />
-            <Route exact path="/AddFilm" render={() => <AddFilm />} />
+            <Route exact path="/AddFilm" render={() => <AddFilm userData={this.state.userData} />} />
             <Route exact path="/NotFoundPage" render={() => <NotFoundPage />} />
             <Redirect to="/NotFoundPage" />
           </Switch>

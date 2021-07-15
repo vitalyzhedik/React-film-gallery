@@ -1,0 +1,66 @@
+.addFilm-content {
+  max-width: 260px;
+  margin: 0 auto;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.form-title {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+
+.input {
+  margin-bottom: 20px;
+  display: block;
+  min-width: 250px;
+}
+
+.button-container-addFilm {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  width: 250px;
+}
+
+.button {
+  min-width: 100px;
+  min-height: 50px;
+}
+
+.button:hover {
+  background-color: #a4b7d3;
+  transition: .3s ease-out;
+  box-shadow: 0 4px 8px rgb(113 113 113);
+  border-width: 2px;
+}
+
+.input-email-error, .input-password-error {
+  display: none;
+  color: red;
+  margin: 0;
+}
+
+.textarea-overview {
+  margin-bottom: 20px;
+  min-width: 252px;
+}
+
+.checkbox-wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.select-genres {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.input-title-error, .input-textarea-overview-error,
+.input-popularity-error, .input-vote-average-error,
+.input-vote-count-error{
+  display: none;
+  color: red;
+  margin: 0;
+}
