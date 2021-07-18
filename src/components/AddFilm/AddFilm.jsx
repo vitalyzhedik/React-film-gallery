@@ -1,29 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory, NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './AddFilm.css';
+import GenresList from './GenresList/GenresList';
 
 const AddFilm = (props) => {
 
   const [filmTitle, setFilmTitle] = useState('');
   const [filmOveriew, setFilmOveriew] = useState('');
   const [filmPoster, setFilmPoster] = useState('');
-  const [filmPopularity, setFilmPopularity] = useState('');
+  const [filmPopularity, setFilmPopularity] = useState(0);
   const [filmReleaseDate, setfilmReleaseDate] = useState('');
   const [filmGenres, setFilmGenres] = useState('');
-  const [filmVoteAverage, setFilmVoteAverage] = useState('');
-  const [filmVoteCount, setFilmVoteCount] = useState('');
-  const [filmAdult, setFilmAdult] = useState('');
+  const [filmVoteAverage, setFilmVoteAverage] = useState(0);
+  const [filmVoteCount, setFilmVoteCount] = useState(0);
+  const [filmAdult, setFilmAdult] = useState(true);
 
   const history = useHistory();
-
-  /*   const setArrayGenres = (result) => {
-      let genresArray = [];
-      for (let i = 0; i < result.genres.length; i++) {
-        genresArray.push(result.genres[i].name)
-      };
-      debugger;
-      return genresArray;
-    }; */
 
   useEffect(() => {
     if (!props.userData.isAdmin) {
@@ -36,10 +28,9 @@ const AddFilm = (props) => {
         (result) => {
           /* let genresArray = [];
           for (let i = 0; i < result.genres.length; i++) {
-            genresArray.push(result.genres[i].name)
-          };
-          debugger;
-          return genresArray; */
+            genresArray.push(result.genres[i].name);
+            setFilmGenres(genresArray);
+          }; */
           setFilmGenres(result.genres);
         },
         (error) => {
@@ -68,6 +59,33 @@ const AddFilm = (props) => {
     } else if (event.target.name === 'filmAdult') {
       setFilmAdult(event.target.value)
     }
+  };
+
+  const handleSubmitForm = () => {
+    if (filmTitle.length < 3) {
+      document.querySelector('.input-title-error').style.display = 'block';
+    };
+    if (filmOveriew.length > 150 || filmOveriew.length < 6) {
+      document.querySelector('.input-textarea-overview-error').style.display = 'block';
+    };
+    if (filmOveriew.length > 150 || filmOveriew.length < 6) {
+      document.querySelector('.input-textarea-overview-error').style.display = 'block';
+    };
+
+    let n = 0;
+
+    props.getNewFilmData({
+      filmTitle, 
+      filmOveriew,
+      filmPoster,
+      filmPopularity,
+      filmReleaseDate, 
+      filmGenres, 
+      filmVoteAverage, 
+      filmVoteCount, 
+      filmAdult,
+      filmId: -1 - n,
+    });
   };
 
   const handleResetForm = () => {
@@ -148,15 +166,21 @@ const AddFilm = (props) => {
           name="filmGenres"
           form="data-film"
           required
-          multiple
+          multiple={true}
           value={filmGenres}
           onChange={handleChange}>
-            {/* {filmGenres} */}
+              <GenresList 
+              name={filmGenres.name}
+              key={filmGenres.id}/>
+
+          {/* {filmGenres.forEach((element) => {
+
+            })} */}
           {/* {filmGenres.map((item) => (
             <option
               className="genre"
-              value={`${item.name}`}>
-              {`${item.name}`}
+              value={`${item}`}>
+              {`${item}`}
             </option>
           ))} */}
         </select>
@@ -193,7 +217,8 @@ const AddFilm = (props) => {
         </div>
         <div className="button-container-addFilm">
           <button className="button button-add"
-            type="button">
+            type="button"
+            onClick={handleSubmitForm}>
             Add
           </button>
           <button className="button button-clear"

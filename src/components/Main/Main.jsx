@@ -42,6 +42,8 @@ class Main extends Component {
         sortBy={this.state.sorting}
         getFilmData={this.props.getFilmData}
         userData={this.props.userData}
+        getNewFilmData={this.props.getNewFilmData}
+        newFilmData={this.props.newFilmData}
         />
         <Pagination updatePageNumber={this.updatePageNumber}/>
       </div>

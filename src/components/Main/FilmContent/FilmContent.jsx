@@ -21,7 +21,7 @@ class FilmContent extends Component {
         (result) => {
           this.setState({
             isLoaded: true,
-            items: result.results
+            items: result.results,
           });
         },
         (error) => {
@@ -39,9 +39,11 @@ class FilmContent extends Component {
         .then(res => res.json())
         .then(
           (result) => {
+            debugger;
             this.setState({
               isLoaded: true,
-              items: result.results
+              items: result.results.unshift(this.props.newFilmData)
+              /* items: result.results */
             });
           },
           (error) => {
@@ -52,6 +54,12 @@ class FilmContent extends Component {
           }
         )
     }
+  };
+
+  handleDeleteFilm = (id) => {
+    this.setState((state) => ({
+      items: state.items.filter(item => item.id !== id)
+    }))
   };
 
   render() {
@@ -70,6 +78,7 @@ class FilmContent extends Component {
               key={film.id}
               getFilmData={this.props.getFilmData}
               userData={this.props.userData}
+              handleDeleteFilm={this.handleDeleteFilm}
               />
             ))}
           </ul>

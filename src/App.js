@@ -19,12 +19,19 @@ class App extends Component {
       filmData: {},
       users: users,
       userData: {},
+      newFilmData: {},
     };
   }
 
   getFilmData = (filmData) => {
     this.setState({
       filmData: filmData
+    })
+  };
+
+  getNewFilmData = (newFilmData) => {
+    this.setState({
+      newFilmData: newFilmData
     })
   };
 
@@ -46,11 +53,11 @@ class App extends Component {
         <div className="App">
           <Header userData={this.state.userData} getUserData={this.getUserData}/>
           <Switch>
-            <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} userData={this.state.userData} />} />
+            <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} userData={this.state.userData} getNewFilmData={this.getNewFilmData} newFilmData={this.state.newFilmData} />} />
             <Route exact path="/Autorization" render={() => <Autorization usersData={this.state.users} getUserData={this.getUserData}/>} />
             <Route exact path="/Registration" render={() => <Registration usersData={this.state.users} getUserData={this.getUserData}/>} />
             <Route exact path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData} userData={this.state.userData}/>} />
-            <Route exact path="/AddFilm" render={() => <AddFilm userData={this.state.userData} />} />
+            <Route exact path="/AddFilm" render={() => <AddFilm userData={this.state.userData} getNewFilmData={this.getNewFilmData}/>} />
             <Route exact path="/NotFoundPage" render={() => <NotFoundPage />} />
             <Redirect to="/NotFoundPage" />
           </Switch>

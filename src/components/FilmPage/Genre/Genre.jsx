@@ -10,3 +10,4 @@ const Genre = (props) => {
 };
 
 export default Genre;
+Genre.displayName = "Genre";

@@ -23,7 +23,13 @@ class FilmCard extends Component {
 
   setFilmData = () => {
     this.props.getFilmData(this.props.film);
-  }
+  };
+
+  deleteFilmCard = (id) => {
+    const filmCard = document.getElementById(`${id}`);
+    filmCard.style.display = 'none';
+  };
+
 
   render() {
     return (
@@ -52,9 +58,14 @@ class FilmCard extends Component {
               vote_average: {`${this.props.film.vote_average}`}
             </div>
           </div>
-          <button className="film-content__list--delete-button">
-          </button>
         </NavLink>
+          <button 
+          className="film-content__list--delete-button"
+          onClick={() => {
+            this.deleteFilmCard(this.props.film.id)
+          }
+          }>
+          </button>
       </li>
     )
   }
