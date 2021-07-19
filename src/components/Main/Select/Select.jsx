@@ -36,6 +36,13 @@ class Select extends Component {
     }
   };
 
+  componentDidUpdate() {
+    if (!this.props.userData.isAdmin) {
+      const signInButton = document.querySelector('.add-film-link');
+      signInButton.style.display = 'none';
+    }
+  };
+
     render() {
       return (
         <div className="main-select-wrapper">

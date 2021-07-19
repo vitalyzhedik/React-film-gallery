@@ -15,29 +15,29 @@ let paginationClick = (event) => {
     let pagePagination = event.target.innerHTML.trim();
 
     if (pagePagination === "&lt; &lt; First") {
-      let totalPage = 5;
+      let showPages = 5;
       let pagePagination = 1;
       props.updatePageNumber(pagePagination);
-      props.createPaginationArray(totalPage, pagePagination);
+      props.createPaginationArray(showPages, pagePagination);
     } else if (pagePagination === "Last &gt; &gt;") {
-      let totalPage = 5;
+      let showPages = 5;
       let pagePagination = 10;
       props.updatePageNumber(pagePagination);
-      props.createPaginationArray(totalPage, pagePagination);
+      props.createPaginationArray(showPages, pagePagination);
     } else if (pagePagination === "&lt; Prev") {
-      let totalPage = 10;
+      let showPages = 10;
       let pagePagination = props.currentPageNumber - 1;
       props.updatePageNumber(pagePagination);
-      props.createPaginationArray(totalPage, pagePagination);
+      props.createPaginationArray(showPages, pagePagination);
     } else if (pagePagination === "Next &gt;") {
-      let totalPage = 10;
+      let showPages = 10;
       let pagePagination = props.currentPageNumber + 1;
       props.updatePageNumber(pagePagination);
-      props.createPaginationArray(totalPage, pagePagination);
+      props.createPaginationArray(showPages, pagePagination);
     } else {
-      let totalPage = 10;
+      let showPages = 10;
       props.updatePageNumber(pagePagination);
-      props.createPaginationArray(totalPage, pagePagination);
+      props.createPaginationArray(showPages, pagePagination);
     };
   };
 

@@ -10,7 +10,8 @@ const AddFilm = (props) => {
   const [filmPoster, setFilmPoster] = useState('');
   const [filmPopularity, setFilmPopularity] = useState(0);
   const [filmReleaseDate, setfilmReleaseDate] = useState('');
-  const [filmGenres, setFilmGenres] = useState('');
+  const [filmGenresAll, setFilmGenresAll] = useState([{ id: 1, name: '' }]);
+  const [filmGenresChecked, setFilmGenresChecked] = useState([]);
   const [filmVoteAverage, setFilmVoteAverage] = useState(0);
   const [filmVoteCount, setFilmVoteCount] = useState(0);
   const [filmAdult, setFilmAdult] = useState(true);
@@ -31,10 +32,10 @@ const AddFilm = (props) => {
             genresArray.push(result.genres[i].name);
             setFilmGenres(genresArray);
           }; */
-          setFilmGenres(result.genres);
+          setFilmGenresAll(result.genres);
         },
         (error) => {
-          setFilmGenres(error);
+          setFilmGenresAll(error);
         }
       )
   });
@@ -51,7 +52,7 @@ const AddFilm = (props) => {
     } else if (event.target.name === 'filmReleaseDate') {
       setfilmReleaseDate(event.target.value)
     } else if (event.target.name === 'filmGenres') {
-      setFilmGenres(event.target.value)
+      setFilmGenresChecked(event.target.value)
     } else if (event.target.name === 'filmVoteAverage') {
       setFilmVoteAverage(event.target.value)
     } else if (event.target.name === 'filmVoteCount') {
@@ -68,21 +69,19 @@ const AddFilm = (props) => {
     if (filmOveriew.length > 150 || filmOveriew.length < 6) {
       document.querySelector('.input-textarea-overview-error').style.display = 'block';
     };
-    if (filmOveriew.length > 150 || filmOveriew.length < 6) {
-      document.querySelector('.input-textarea-overview-error').style.display = 'block';
-    };
 
     let n = 0;
 
     props.getNewFilmData({
-      filmTitle, 
+      filmTitle,
       filmOveriew,
       filmPoster,
       filmPopularity,
-      filmReleaseDate, 
-      filmGenres, 
-      filmVoteAverage, 
-      filmVoteCount, 
+      filmReleaseDate,
+      filmGenresAll,
+      filmGenresChecked,
+      filmVoteAverage,
+      filmVoteCount,
       filmAdult,
       filmId: -1 - n,
     });
@@ -92,12 +91,13 @@ const AddFilm = (props) => {
     setFilmTitle('');
     setFilmOveriew('');
     setFilmPoster('');
-    setFilmPopularity('');
+    setFilmPopularity(0);
     setfilmReleaseDate('');
-    setFilmGenres('');
-    setFilmVoteAverage('');
-    setFilmVoteCount('');
-    setFilmAdult('');
+    setFilmGenresAll([{ id: 1, name: '' }]);
+    setFilmGenresChecked([]);
+    setFilmVoteAverage(0);
+    setFilmVoteCount(0);
+    setFilmAdult(true);
 
     document.querySelector('.input-title-error').style.display = 'none';
     document.querySelector('.input-textarea-overview-error').style.display = 'none';
@@ -167,12 +167,13 @@ const AddFilm = (props) => {
           form="data-film"
           required
           multiple={true}
-          value={filmGenres}
-          onChange={handleChange}>
-              <GenresList 
-              name={filmGenres.name}
-              key={filmGenres.id}/>
-
+          /* value={filmGenres}
+          onChange={handleChange} */>
+          {filmGenresAll.map((item) => (
+            <GenresList
+              name={item.name}
+              key={item.id} />
+          ))}
           {/* {filmGenres.forEach((element) => {
 
             })} */}

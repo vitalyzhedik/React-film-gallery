@@ -18,6 +18,29 @@ class FilmCard extends Component {
       filmCards.forEach((item) => {
         item.classList.add('film-content__list--item-admin');
       });
+    };
+    if (!this.props.userData.isAdmin) {
+      const deleteButtonFilm = document.querySelectorAll('.film-content__list--delete-button');
+      deleteButtonFilm.forEach((item) => {
+        item.style.display = 'none';
+      });
+      const filmCards = document.querySelectorAll('.film-content__list--item');
+      filmCards.forEach((item) => {
+        item.classList.remove('film-content__list--item-admin');
+      });
+    }
+  };
+
+  componentDidUpdate() {
+    if (!this.props.userData.isAdmin) {
+      const deleteButtonFilm = document.querySelectorAll('.film-content__list--delete-button');
+      deleteButtonFilm.forEach((item) => {
+        item.style.display = 'none';
+      });
+      const filmCards = document.querySelectorAll('.film-content__list--item');
+      filmCards.forEach((item) => {
+        item.classList.remove('film-content__list--item-admin');
+      });
     }
   };
 
@@ -59,13 +82,13 @@ class FilmCard extends Component {
             </div>
           </div>
         </NavLink>
-          <button 
+        <button
           className="film-content__list--delete-button"
           onClick={() => {
             this.deleteFilmCard(this.props.film.id)
           }
           }>
-          </button>
+        </button>
       </li>
     )
   }

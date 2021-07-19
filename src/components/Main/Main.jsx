@@ -44,6 +44,7 @@ class Main extends Component {
         userData={this.props.userData}
         getNewFilmData={this.props.getNewFilmData}
         newFilmData={this.props.newFilmData}
+        filmIdForDelete={this.props.filmIdForDelete}
         />
         <Pagination updatePageNumber={this.updatePageNumber}/>
       </div>

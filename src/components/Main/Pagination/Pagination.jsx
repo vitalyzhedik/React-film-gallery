@@ -8,28 +8,29 @@ class Pagination extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      totalPage: 5,
+      totalPage: 10,
+      showPages: 5,
       pageNumber: 1,
       paginationList: [
-        "< < First",
-        "< Prev",
-        "1", "2", "3"
+        "1", "2", "3",
+        "Next >",
+        "Last > >",
       ],
     };
   };
 
-  createPaginationArray = (totalPages, page) => {
+  createPaginationArray = (showPages, page) => {
     if (page === 1 || 10) {
       this.setState({
-        totalPage: 5,
+        showPages: 5,
       });
     } else if (page === 2 || 9) {
       this.setState({
-        totalPage: 8,
+        showPages: 8,
       });
     } else {
       this.setState({
-        totalPage: 9,
+        showPages: 9,
       });
     }
 
@@ -41,7 +42,7 @@ class Pagination extends Component {
       paginationArray.push("< < First", "< Prev");
     };
     for (let pageLength = beforePages; pageLength <= afterPages; pageLength++) {
-      if (pageLength > totalPages) {
+      if (pageLength > showPages) {
         continue;
       }
       if (pageLength < 1) {
@@ -49,7 +50,7 @@ class Pagination extends Component {
       }
       paginationArray.push(pageLength);
     };
-    if (page < totalPages) {
+    if (page < showPages) {
       paginationArray.push("Next >", "Last > >")
     }
     this.setState({
@@ -66,7 +67,7 @@ class Pagination extends Component {
           createPaginationArray={this.createPaginationArray}
           innerText={page}
           currentPageNumber={this.state.pageNumber}
-          totalPage={this.state.totalPage}
+          showPages={this.state.showPages}
           class="page-number-button"
           key={page} />
       )

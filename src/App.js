@@ -20,6 +20,7 @@ class App extends Component {
       users: users,
       userData: {},
       newFilmData: {},
+      filmIdForDelete: ''
     };
   }
 
@@ -47,17 +48,42 @@ class App extends Component {
     })
   };
 
+  getfilmIdForDelete = (id) => {
+    this.setState({
+      filmIdForDelete: id
+    })
+  }
+
   render() {
     return (
       <BrowserRouter>
         <div className="App">
-          <Header userData={this.state.userData} getUserData={this.getUserData}/>
+          <Header userData={this.state.userData} getUserData={this.getUserData} />
           <Switch>
-            <Route exact path="/" render={() => <Main getFilmData={this.getFilmData} userData={this.state.userData} getNewFilmData={this.getNewFilmData} newFilmData={this.state.newFilmData} />} />
-            <Route exact path="/Autorization" render={() => <Autorization usersData={this.state.users} getUserData={this.getUserData}/>} />
-            <Route exact path="/Registration" render={() => <Registration usersData={this.state.users} getUserData={this.getUserData}/>} />
-            <Route exact path="/FilmPage" render={() => <FilmPage filmData={this.state.filmData} userData={this.state.userData}/>} />
-            <Route exact path="/AddFilm" render={() => <AddFilm userData={this.state.userData} getNewFilmData={this.getNewFilmData}/>} />
+            <Route exact path="/" render={() =>
+              <Main
+                getFilmData={this.getFilmData}
+                userData={this.state.userData}
+                getNewFilmData={this.getNewFilmData}
+                newFilmData={this.state.newFilmData} 
+                filmIdForDelete={this.state.filmIdForDelete}/>} />
+            <Route exact path="/Autorization" render={() =>
+              <Autorization
+                usersData={this.state.users}
+                getUserData={this.getUserData} />} />
+            <Route exact path="/Registration" render={() =>
+              <Registration
+                usersData={this.state.users}
+                getUserData={this.getUserData} />} />
+            <Route exact path="/FilmPage" render={() =>
+              <FilmPage
+                filmData={this.state.filmData}
+                userData={this.state.userData}
+                getfilmIdForDelete={this.getfilmIdForDelete} />} />
+            <Route exact path="/AddFilm" render={() =>
+              <AddFilm
+                userData={this.state.userData}
+                getNewFilmData={this.getNewFilmData} />} />
             <Route exact path="/NotFoundPage" render={() => <NotFoundPage />} />
             <Redirect to="/NotFoundPage" />
           </Switch>

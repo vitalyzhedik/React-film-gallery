@@ -42,8 +42,8 @@ class FilmContent extends Component {
             debugger;
             this.setState({
               isLoaded: true,
-              items: result.results.unshift(this.props.newFilmData)
-              /* items: result.results */
+              /* items: result.results.unshift(this.props.newFilmData) */
+              items: result.results
             });
           },
           (error) => {
@@ -53,7 +53,7 @@ class FilmContent extends Component {
             });
           }
         )
-    }
+    };
   };
 
   handleDeleteFilm = (id) => {
@@ -79,6 +79,7 @@ class FilmContent extends Component {
               getFilmData={this.props.getFilmData}
               userData={this.props.userData}
               handleDeleteFilm={this.handleDeleteFilm}
+              filmIdForDelete={this.props.filmIdForDelete}
               />
             ))}
           </ul>
