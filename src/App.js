@@ -19,7 +19,7 @@ class App extends Component {
       filmData: {},
       users: users,
       userData: {},
-      newFilmData: {},
+      newFilmData: '',
       filmIdForDelete: ''
     };
   }
@@ -91,7 +91,7 @@ class App extends Component {
       </BrowserRouter>
     )
   }
-}
+};
 
 export default App;
 App.displayName = "App";
