@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import './Registration.css';
 
 const Registration = (props) => {
-  
+
   const [userName, setUserName] = useState('');
   const [userSurName, setUserSurName] = useState('');
   const [userPassword, setUserPassword] = useState('');
@@ -64,19 +64,18 @@ const Registration = (props) => {
         break;
       } else if (userEmail !== props.usersData[i].email &&
         userName.length > 7 &&
-        userSurName.length > 7 && 
+        userSurName.length > 7 &&
         userPassword === userConfirmPassword) {
-          props.getUserData({
-            isAdmin: false,
-            isAutorized: true,
-            userName: userName
-          });
-          history.push('/');
+        props.getUserData({
+          isAdmin: false,
+          isAutorized: true,
+          userName: userName
+        });
+        history.push('/');
         break;
       }
     };
   };
-
 
   return (
     <div className="registration-content">

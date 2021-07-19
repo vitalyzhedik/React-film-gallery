@@ -4,8 +4,6 @@ import './Autorization.css';
 
 const Autorization = (props) => {
 
-/*   const [autorized, setAutorized] = useState(false);
-  const [admin, setAdmin] = useState(false); */
   const [userEmail, setUserEmail] = useState('');
   const [userPassword, setUserPassword] = useState('');
 

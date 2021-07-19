@@ -53,7 +53,6 @@ class FilmCard extends Component {
     filmCard.style.display = 'none';
   };
 
-
   render() {
     return (
       <li

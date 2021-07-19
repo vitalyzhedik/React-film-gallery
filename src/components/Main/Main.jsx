@@ -27,7 +27,7 @@ class Main extends Component {
     });
   };
 
-  componentDidMount () {
+  componentDidMount() {
     const signInButton = document.querySelector('.header-content__sign-button');
     signInButton.style.display = 'block';
   }
@@ -35,20 +35,20 @@ class Main extends Component {
   render() {
     return (
       <main className="main">
-      <div className="main-content">
-        <Select sorting={this.updateSorting} userData={this.props.userData}/>
-        <FilmContent 
-        pageNumber={this.state.page} 
-        sortBy={this.state.sorting}
-        getFilmData={this.props.getFilmData}
-        userData={this.props.userData}
-        getNewFilmData={this.props.getNewFilmData}
-        newFilmData={this.props.newFilmData}
-        filmIdForDelete={this.props.filmIdForDelete}
-        />
-        <Pagination updatePageNumber={this.updatePageNumber}/>
-      </div>
-    </main >
+        <div className="main-content">
+          <Select sorting={this.updateSorting} userData={this.props.userData} />
+          <FilmContent
+            pageNumber={this.state.page}
+            sortBy={this.state.sorting}
+            getFilmData={this.props.getFilmData}
+            userData={this.props.userData}
+            getNewFilmData={this.props.getNewFilmData}
+            newFilmData={this.props.newFilmData}
+            filmIdForDelete={this.props.filmIdForDelete}
+          />
+          <Pagination updatePageNumber={this.updatePageNumber} />
+        </div>
+      </main >
     )
   };
 };

@@ -35,16 +35,17 @@ class FilmPage extends Component {
           });
         }
       )
-      if (this.props.userData.isAutorized === true) {
-        document.querySelector('.vote-rating').style.display = 'block';
-      };
-      if (this.props.userData.isAdmin === true) {
-        const deleteFilmBtn = document.querySelector('.button-del');
-        deleteFilmBtn.style.display = 'block';
-        const redactorFilmBtn = document.querySelector('.button-redactor');
-        redactorFilmBtn.style.display = 'block';
-      }
+    if (this.props.userData.isAutorized === true) {
+      document.querySelector('.vote-rating').style.display = 'block';
+    };
+    if (this.props.userData.isAdmin === true) {
+      const deleteFilmBtn = document.querySelector('.button-del');
+      deleteFilmBtn.style.display = 'block';
+      const redactorFilmBtn = document.querySelector('.button-redactor');
+      redactorFilmBtn.style.display = 'block';
     }
+  };
+
   filmGenresList = () => {
     let filmGenresList = [];
     for (let i = 0; i < this.state.genres; i++) {
@@ -85,7 +86,7 @@ class FilmPage extends Component {
         </div>
         <div className="wrapper__button">
           <button className="button-del"
-          onClick={this.getFilmId}>
+            onClick={this.getFilmId}>
           </button>
           <button className="button-redactor">
           </button>
@@ -121,13 +122,13 @@ class FilmPage extends Component {
             <li className="wrapper__text--list-item vote-rating">
               <span className="list-item-bold">vote(rating):</span>
               <input className="input-rating"
-               type="number"
+                type="number"
                 name="rating"
-                 id="" min='1'
-                  max='10'
-                   placeholder='Rating'
-                    value={this.state.voteInput}
-                    onChange={this.handleChangeVoteRating} />
+                id="" min='1'
+                max='10'
+                placeholder='Rating'
+                value={this.state.voteInput}
+                onChange={this.handleChangeVoteRating} />
               <button className="vote-rating-button" onClick={this.addVoteCount}>add vote</button>
             </li>
           </ul>

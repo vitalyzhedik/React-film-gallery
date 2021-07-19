@@ -5,16 +5,16 @@ import GenresList from './GenresList/GenresList';
 
 const AddFilm = (props) => {
 
-  const [filmTitle, setFilmTitle] = useState('');
-  const [filmOveriew, setFilmOveriew] = useState('');
-  const [filmPoster, setFilmPoster] = useState('');
-  const [filmPopularity, setFilmPopularity] = useState(0);
-  const [filmReleaseDate, setfilmReleaseDate] = useState('');
+  const [title, setTitle] = useState('');
+  const [overview, setOverview] = useState('');
+  const [poster_path, setPoster_path] = useState('');
+  const [popularity, setPopularity] = useState();
+  const [release_date, setRelease_date] = useState('');
   const [filmGenresAll, setFilmGenresAll] = useState([{ id: 1, name: '' }]);
   const [filmGenresChecked, setFilmGenresChecked] = useState([]);
-  const [filmVoteAverage, setFilmVoteAverage] = useState(0);
-  const [filmVoteCount, setFilmVoteCount] = useState(0);
-  const [filmAdult, setFilmAdult] = useState(true);
+  const [vote_average, setVote_average] = useState();
+  const [vote_count, setVote_count] = useState();
+  const [adult, setAdult] = useState(false);
 
   const history = useHistory();
 
@@ -27,11 +27,6 @@ const AddFilm = (props) => {
       .then(res => res.json())
       .then(
         (result) => {
-          /* let genresArray = [];
-          for (let i = 0; i < result.genres.length; i++) {
-            genresArray.push(result.genres[i].name);
-            setFilmGenres(genresArray);
-          }; */
           setFilmGenresAll(result.genres);
         },
         (error) => {
@@ -41,67 +36,90 @@ const AddFilm = (props) => {
   });
 
   const handleChange = (event) => {
-    if (event.target.name === 'filmTitle') {
-      setFilmTitle(event.target.value)
-    } else if (event.target.name === 'filmOveriew') {
-      setFilmOveriew(event.target.value)
-    } else if (event.target.name === 'filmPoster') {
-      setFilmPoster(event.target.value)
-    } else if (event.target.name === 'filmPopularity') {
-      setFilmPopularity(event.target.value)
-    } else if (event.target.name === 'filmReleaseDate') {
-      setfilmReleaseDate(event.target.value)
+    if (event.target.name === 'title') {
+      setTitle(event.target.value)
+    } else if (event.target.name === 'overview') {
+      setOverview(event.target.value)
+    } else if (event.target.name === 'poster_path') {
+      setPoster_path(event.target.value)
+    } else if (event.target.name === 'popularity') {
+      setPopularity(event.target.value)
+    } else if (event.target.name === 'release_date') {
+      setRelease_date(event.target.value)
     } else if (event.target.name === 'filmGenres') {
       setFilmGenresChecked(event.target.value)
-    } else if (event.target.name === 'filmVoteAverage') {
-      setFilmVoteAverage(event.target.value)
-    } else if (event.target.name === 'filmVoteCount') {
-      setFilmVoteCount(event.target.value)
-    } else if (event.target.name === 'filmAdult') {
-      setFilmAdult(event.target.value)
+    } else if (event.target.name === 'vote_average') {
+      setVote_average(event.target.value)
+    } else if (event.target.name === 'vote_count') {
+      setVote_count(event.target.value)
+    } else if (event.target.name === 'adult') {
+      setAdult(event.target.value)
     }
   };
 
   const handleSubmitForm = () => {
-    if (filmTitle.length < 3) {
+    if (title.length < 3) {
       document.querySelector('.input-title-error').style.display = 'block';
-    };
-    if (filmOveriew.length > 150 || filmOveriew.length < 6) {
+    } else if (overview.length > 150 || overview.length < 6) {
+      document.querySelector('.input-title-error').style.display = 'none';
       document.querySelector('.input-textarea-overview-error').style.display = 'block';
-    };
+    } else if (!poster_path) {
+      document.querySelector('.input-textarea-overview-error').style.display = 'none';
+      document.querySelector('.input-poster-error').style.display = 'block';
+    } else if (!popularity) {
+      document.querySelector('.input-poster-error').style.display = 'none';
+      document.querySelector('.input-popularity-error').style.display = 'block';
+    } else if (!release_date) {
+      document.querySelector('.input-popularity-error').style.display = 'none';
+      document.querySelector('.input-release-date-error').style.display = 'block';
+    } else if (!vote_average) {
+      document.querySelector('.input-release-date-error').style.display = 'none';
+      document.querySelector('.input-vote-average-error').style.display = 'block';
+    } else if (!vote_count) {
+      document.querySelector('.input-vote-average-error').style.display = 'none';
+      document.querySelector('.input-vote-count-error').style.display = 'block';
+    } else {
+      document.querySelector('.input-vote-count-error').style.display = 'none';
+      handleResetForm();
+    }
 
     let n = 0;
 
     props.getNewFilmData({
-      filmTitle,
-      filmOveriew,
-      filmPoster,
-      filmPopularity,
-      filmReleaseDate,
+      title,
+      overview,
+      poster_path,
+      popularity,
+      release_date,
       filmGenresAll,
       filmGenresChecked,
-      filmVoteAverage,
-      filmVoteCount,
-      filmAdult,
-      filmId: -1 - n,
+      vote_average,
+      vote_count,
+      adult,
+      id: -1 - n,
     });
   };
 
   const handleResetForm = () => {
-    setFilmTitle('');
-    setFilmOveriew('');
-    setFilmPoster('');
-    setFilmPopularity(0);
-    setfilmReleaseDate('');
+    setTitle('');
+    setOverview('');
+    setPoster_path('');
+    setPopularity('');
+    setRelease_date('');
     setFilmGenresAll([{ id: 1, name: '' }]);
     setFilmGenresChecked([]);
-    setFilmVoteAverage(0);
-    setFilmVoteCount(0);
-    setFilmAdult(true);
+    setVote_average('');
+    setVote_count('');
+    setAdult(false);
 
     document.querySelector('.input-title-error').style.display = 'none';
     document.querySelector('.input-textarea-overview-error').style.display = 'none';
     document.querySelector('.input-popularity-error').style.display = 'none';
+    document.querySelector('.input-vote-average-error').style.display = 'none';
+    document.querySelector('.input-vote-count-error').style.display = 'none';
+    document.querySelector('.input-poster-error').style.display = 'none';
+    document.querySelector('.input-popularity-error').style.display = 'none';
+    document.querySelector('.input-release-date-error').style.display = 'none';
     document.querySelector('.input-vote-average-error').style.display = 'none';
     document.querySelector('.input-vote-count-error').style.display = 'none';
   };
@@ -113,104 +131,98 @@ const AddFilm = (props) => {
           Введите больше 2 символов!
         </p>
         <input className="input input-title"
-          name="filmTitle"
+          name="title"
           type="text"
           placeholder="Title"
           minlength="3"
           required
-          value={filmTitle}
+          value={title}
           onChange={handleChange}>
         </input>
         <p className="input-textarea-overview-error">
           Число символов должно быть от 6 до 150!
         </p>
         <textarea className="textarea-overview"
-          name="filmOveriew"
+          name="overview"
           id="overview"
           placeholder="Overview"
           minlength="6"
           maxlength="150"
           required
-          value={filmOveriew}
+          value={overview}
           onChange={handleChange}>
         </textarea>
+        <p className="input-poster-error">
+          Добавьте постер!
+        </p>
         <label for="poster">
           Poster path
           </label>
         <input className="input input-poster"
           id="poster"
-          name="filmPoster"
+          name="poster_path"
           type="file"
           placeholder="Poster"
           required
-          value={filmPoster}
+          value={poster_path}
           onChange={handleChange} />
         <p className="input-popularity-error">
-          Введенное значение должно быть числом!
+          Введите значение!
         </p>
         <input className="input input-popularity"
-          name="filmPopularity"
+          name="popularity"
           type="number"
           placeholder="Popularity"
           required
-          value={filmPopularity}
+          value={popularity}
           onChange={handleChange} />
+        <p className="input-release-date-error">
+          Введите значение!
+        </p>
         <input className="input input-release-date"
-          name="filmReleaseDate"
+          name="release_date"
           type="date"
           placeholder="Release date"
           required
-          value={filmReleaseDate}
+          value={release_date}
           onChange={handleChange} />
         <select className="select-genres"
           name="filmGenres"
           form="data-film"
           required
-          multiple={true}
-          /* value={filmGenres}
-          onChange={handleChange} */>
+          multiple={true}>
           {filmGenresAll.map((item) => (
             <GenresList
               name={item.name}
               key={item.id} />
           ))}
-          {/* {filmGenres.forEach((element) => {
-
-            })} */}
-          {/* {filmGenres.map((item) => (
-            <option
-              className="genre"
-              value={`${item}`}>
-              {`${item}`}
-            </option>
-          ))} */}
         </select>
         <p className="input-vote-average-error">
-          Введенное значение должно быть числом!
+          Введите значение!
         </p>
         <input className="input input-vote-average"
-          name="filmVoteAverage"
+          name="vote_average"
           type="number"
           placeholder="Vote average"
-          required value={filmVoteAverage}
+          required value={vote_average}
           onChange={handleChange} />
         <p className="input-vote-count-error">
-          Введенное значение должно быть числом!
+          Введите значение!
         </p>
         <input className="input input-vote-count"
-          name="filmVoteCount"
+          name="vote_count"
           type="number"
           placeholder="Vote count"
           required
-          value={filmVoteCount}
+          value={vote_count}
           onChange={handleChange} />
         <div className="checkbox-wrapper">
           <input className="input-checkbox-adult"
             id="checkbox-adult"
-            name="filmAdult"
+            name="adult"
             type="checkbox"
             required
-            value={filmAdult}
+            value={adult}
             onChange={handleChange} />
           <label for="checkbox-adult">
             adult
