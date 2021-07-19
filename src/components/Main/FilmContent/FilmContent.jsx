@@ -19,10 +19,18 @@ class FilmContent extends Component {
       .then(res => res.json())
       .then(
         (result) => {
-          this.setState({
-            isLoaded: true,
-            items: result.results,
-          });
+          if (this.props.newFilmData) {
+            result.results.unshift(this.props.newFilmData)
+            this.setState({
+              isLoaded: true,
+              items: result.results,
+            });
+          } else {
+            this.setState({
+              isLoaded: true,
+              items: result.results,
+            });
+          }
         },
         (error) => {
           this.setState({
@@ -39,12 +47,18 @@ class FilmContent extends Component {
         .then(res => res.json())
         .then(
           (result) => {
-            debugger;
-            this.setState({
-              isLoaded: true,
-              /* items: result.results.unshift(this.props.newFilmData) */
-              items: result.results
-            });
+            if (this.props.newFilmData) {
+              result.results.unshift(this.props.newFilmData);
+              this.setState({
+                isLoaded: true,
+                items: result.results
+              });
+            } else {
+              this.setState({
+                isLoaded: true,
+                items: result.results
+              });
+            }
           },
           (error) => {
             this.setState({
@@ -73,13 +87,13 @@ class FilmContent extends Component {
         <div className="film-content">
           <ul className="film-content__list">
             {items.map(film => (
-              <FilmCard 
-              film={film}
-              key={film.id}
-              getFilmData={this.props.getFilmData}
-              userData={this.props.userData}
-              handleDeleteFilm={this.handleDeleteFilm}
-              filmIdForDelete={this.props.filmIdForDelete}
+              <FilmCard
+                film={film}
+                key={film.id}
+                getFilmData={this.props.getFilmData}
+                userData={this.props.userData}
+                handleDeleteFilm={this.handleDeleteFilm}
+                filmIdForDelete={this.props.filmIdForDelete}
               />
             ))}
           </ul>

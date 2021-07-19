@@ -59,7 +59,7 @@
 
 .input-title-error, .input-textarea-overview-error,
 .input-popularity-error, .input-vote-average-error,
-.input-vote-count-error{
+.input-vote-count-error, .input-poster-error, .input-release-date-error{
   display: none;
   color: red;
   margin: 0;
